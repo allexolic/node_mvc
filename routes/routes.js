@@ -20,4 +20,22 @@ routes.get('/employee/add',controllers.employeeController.add);
 routes.post('/employee/add',controllers.employeeController.save);
 routes.post('/employee/view',controllers.employeeController.employeeDetail);
 routes.get('/employee/edit/(:employee_id)',controllers.employeeController.edit);
+
+//Fabricante routes
+routes.get('/fabricante',controllers.fabricanteController.index);
+routes.get('/fabricante/add',controllers.fabricanteController.add);
+routes.post('/fabricante/add',controllers.fabricanteController.save);
+
+//Estabelecimento routes
+routes.get('/estabelecimento',controllers.estabelecimentoController.index);
+routes.get('/estabelecimento/add',controllers.estabelecimentoController.add);
+routes.post('/estabelecimento/add', controllers.estabelecimentoController.save);
+//routes.post('/estabelecimento/view', controllers.estabelecimentoController.estabelecimentoDetail);
+
+//Compra routes
+routes.get('/compra',controllers.compraController.index);
+routes.get('/compra/add', controllers.compraController.add);
+routes.post('/compra/save',controllers.compraController.save);
+//routes.post('/compra/view',controlles.compraController.compraDetail);
+
 module.exports=routes;

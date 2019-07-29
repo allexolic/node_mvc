@@ -1,8 +1,8 @@
 var homeController=function(){}
 
 homeController.index=function(req,res){
-    req.flash('success', 'Welcome to HOm')
-    res.render('home/index',{title:'Home page'});
+    req.flash('success', 'Gestor Financeiro')
+    res.render('home/index',{title:'Exibir gráficos'});
 }
 
 module.exports=homeController

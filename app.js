@@ -13,7 +13,7 @@ const path = require('path');
 const methodOverride = require('method-override');
 const moment= require('moment');
 app.locals.moment=moment;
-app.locals.shortDateFormat="MM/DD/YYYY";
+app.locals.shortDateFormat="DD/MM/YYYY";
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(__dirname + '/public'));

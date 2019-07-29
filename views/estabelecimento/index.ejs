@@ -1,0 +1,37 @@
+<%- include ../layouts/header.ejs %>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><%= title %><a href="/estabelecimento/add" class= "pull-right"><i class="fa fa-plus fa-fw"></i>Novo Estabelecimento</a></div>
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (estabelecimentos) { %>
+                        <% estabelecimentos.forEach(function(estabelecimento){ %>
+                        <tr>
+                            <td>
+                                <%= estabelecimento.nmEstabelecimento %>
+                            </td>
+                           
+                            <td>
+                                <a href="/estabelecimento/edit/<%= estabelecimento.id %>"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include ../layouts/footer.ejs %>

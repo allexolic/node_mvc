@@ -146,3 +146,46 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+use node_express;
+
+
+Create table fabricante
+(
+	fabricanteId int(11) NOT NULL auto_increment,
+    nmFabricante varchar(175) Not Null,
+    nuCnpj       varchar(20),
+    dtCadastro   datetime not null default current_timestamp,
+    
+    primary key(fabricanteId)
+);
+
+Select * From fabricante;
+
+Create table estabelecimento
+(
+	estabelecimentoId int(11) NOT NULL auto_increment,
+    nmEstabelecimento varchar(175) Not Null,
+    dtCadastro   datetime not null default current_timestamp,
+    
+    primary key(estabelecimentoId)
+);
+
+Select * From estabelecimento;
+
+Create table compra
+(
+	compraId          int(11) NOT NULL auto_increment,
+    dtCompra          datetime,
+    estabelecimentoId int,
+    dtCadastro        datetime not null default current_timestamp,
+    
+    primary key(compraId)
+);
+
+Select * From compra;
+
+Select a.*, b.nmEstabelecimento  From compra a left Join estabelecimento b on a.estabelecimentoId = b.estabelecimentoId;
+

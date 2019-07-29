@@ -1,0 +1,44 @@
+<%- include ../layouts/header.ejs %>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+               <%= title %>  
+                <a href="/fabricante/add" class= "pull-right"><i class="fa fa-plus fa-fw"></i>Novo Fabricante</a>
+                <a href="/fabricante/find" class= "pull-center"><i class="fa fa-search"></i>Buscar Fabricante</a>
+            </div>
+         
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CNPJ</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (fabricantes) { %>
+                        <% fabricantes.forEach(function(fabricante){ %>
+                        <tr>
+                            <td>
+                                <%= fabricante.nmFabricante %>
+                            </td>
+                            <td>
+                                <%= fabricante.nuCnpj %>
+                            </td>
+                            <td>
+                                <a href="/fabricante/edit/<%= fabricante.id %>"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include ../layouts/footer.ejs %>
