@@ -35,7 +35,7 @@ routes.post('/estabelecimento/add', controllers.estabelecimentoController.save);
 //Compra routes
 routes.get('/compra',controllers.compraController.index);
 routes.get('/compra/add', controllers.compraController.add);
-routes.post('/compra/save',controllers.compraController.save);
-//routes.post('/compra/view',controlles.compraController.compraDetail);
+routes.post('/compra/add',controllers.compraController.save);
+routes.post('/compra/view',controllers.compraController.compraDetail);
 
 module.exports=routes;

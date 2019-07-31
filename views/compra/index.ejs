@@ -10,7 +10,7 @@
                             <th></th>    
                             <th>Estabelecimento</th>
                             <th>Data Compra</th>
-                            <th>Action</th>
+                            <th>Ação</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,11 +22,11 @@
                                                <img src="/images/no-user-image.png" style="height:50px;">     
                                            <% } %>
                                         </td>
-                                        <td><%= compra.name %></td>
-                                        <td><%= moment(compra.date_of_birth).format(shortDateFormat) %></td>
+                                        <td><%= compra.nmEstabelecimento %></td>
+                                        <td><%= moment(compra.dtCompra).format(shortDateFormat) %></td>
                                         <td>
-                                            <a href="/compra/edit/<%= employee.id %>"><i class="fa fa-edit"></i></a>
-                                            <a href="#" class="view-employee" data-employee-id="<%= employee.id %>"><i class="fa fa-eye"></i></a>
+                                            <a href="/compra/edit/<%= compra.compraId %>"><i class="fa fa-edit"></i></a>
+                                            <a href="#" class="view-compra" data-compra-id="<%= compra.compraId %>"><i class="fa fa-eye"></i></a>
                                         </td>
                                     </tr>
                                 <% }) %>
@@ -48,12 +48,9 @@
               <h4 class="modal-title">Detalhes da compra</h4>
             </div>
             <div class="modal-body">
-                <p><b>Name</b>: <span class="employee-name employee-details"></span></p>
-                <p><b>Email:</b> <span class="employee-email employee-details"></span></p>
-                <p><b>Company :</b> <span class="employee-company employee-details"></span></p>
-                <p><b>DOB:</b><span class="employee-dob employee-details"></span></p>
-                <p><b>DOJ:</b><span class="employee-doj employee-details"></span></p>
-                <p><b>DOL:</b> <span class="employee-dol employee-details"></span></p>
+                <p><b>Data Compra </b>: <span class="compra-dtCompra compra-details"></span></p>
+                <p><b>Estabelecimento :</b> <span class="compra-estabelecimento compra-details"></span></p>
+               
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

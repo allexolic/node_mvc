@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $('.datepicker').datepicker({
-        autoclose: true
+        autoclose: true,
+        format: 'dd/mm/yyyy' 
     });
 
     $(document).on('click','.view-employee',function(e){
@@ -36,4 +37,34 @@ $(document).ready(function(){
         $modal.find('.employee-doj').text('');
         $modal.find('.employee-dol').text('');
     });
+});
+
+
+$(document).on('click','.view-compra',function(e){
+    e.preventDefault();
+    var compra_id=$(this).attr('data-compra-id');
+    $.ajax({
+        url:"/compra/view",
+        type:'POST',
+        dataType:'JSON',
+        data:{compra_id:compra_id},
+        success:function(response){
+            if(response.status==1){
+                
+                $modal=$('#compra_detail');  
+                $modal.find('.compra-estabelecimento').text(response.data[0].nmEstabelecimento);
+                $modal.find('.compra-dtCompra').text(response.data[0].dtCompra);       
+                     
+                $modal.modal('show');
+            }else{
+                alert(response.message);
+            }
+        }
+    });
+});
+$(document).on('hide.bs.modal','#compra_detail',function(){
+    $modal=$('#compra_detail');  
+
+    $modal.find('.compra-estabelecimento').text('');
+    $modal.find('.compra-dtCompra').text('');
 });

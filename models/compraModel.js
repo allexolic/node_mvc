@@ -3,17 +3,19 @@ var sql= require('../db');
 var compraModel = function(){}
 
 compraModel.insertCompra= function(newCompra, result){
-    sql.query("insert into compra set ?", newCompra, function(err,res,field){
+    sql.query("INSERT into compra SET  ?",  newCompra, function(err,res,field){
         if(err){
             return result(err,null);
+            
         }else{
             return result(null,res);
+                       
         }
     });
 }
 
 compraModel.getAllCompra=function(result){
-    sql.query("Select * From `compra`", function(err,rows,fields){
+    sql.query("Select * From ListarCompras", function(err,rows,fields){
         if(err){
             return result(err,null);
         }else{
@@ -23,7 +25,7 @@ compraModel.getAllCompra=function(result){
 }
 
 compraModel.getCompraById=function(compra_id,result){
-    sql.query("Select a.*, b.nmEstabelecimento From compra a left Join estabelecimento b on a.estabelecimentoId = b.estabelecimentoId Where a.compraId ="+compra_id,function(err,rows){
+    sql.query("Select * From ListarComprasRealizadas Where compraId ="+compra_id,function(err,rows){
         if(err)
         return result (err,null);
 

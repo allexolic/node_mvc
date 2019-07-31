@@ -22,19 +22,24 @@ compraController.add = function(req, res, next){
 }
 
 compraController.save = function(req, res,next){
-    req.assert('nmEstabelecimento','Selecione o estabelecimento.').notEmpty();
+    req.assert('estabelecimento','Selecione o estabelecimento.').notEmpty();
     req.assert('dtCompra','Informe a data de compra').notEmpty();
 
     var errors = req.validationErrors();
+
     if (!errors){
         var newCompra = {
-            estabelecimentoId: req.sanitize('nmEstabelecimento').escape().trim(),
-            dtCompra: dateFormat(req.sanitize('dtCompra').trim(), 'yyyy-mm-dd') 
+
+          estabelecimentoId: req.sanitize('estabelecimento').escape().trim(),
+          dtCompra:  req.sanitize('dtCompra').trim() 
         }
+
+        
         compraModel.insertCompra(newCompra, function(err){
             if(err){
                 req.flash('error','Erro ao inserir compra');
-
+               console.log(err)
+                
             }else{
                 req.flash('success','Compra registrada com sucesso');
             }
@@ -44,6 +49,7 @@ compraController.save = function(req, res,next){
         var err_msg = "";
         errors.forEach(function(err){
             err_msg += err.msg + "<br/>";
+            
         })
         estabelecimentoModel.getAllEstabelecimento(function(err,estabelecimentos){
             req.flash('error',err_msg);
