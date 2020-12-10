@@ -7,29 +7,34 @@ var controllers= require('../controllers');
 //home page routes
 routes.get('/',controllers.homeController.index);
 
-//company routes
-routes.get('/company',controllers.companyController.index);
-routes.get('/company/add',controllers.companyController.add);
-routes.post('/company/add',controllers.companyController.save);
-routes.get('/company/edit/(:id)',controllers.companyController.edit);
-routes.post('/company/edit/(:id)',controllers.companyController.update);
+//usuario routes
+routes.get('/usuario',controllers.usuarioController.index);
+routes.get('/usuario/add',controllers.usuarioController.add);
+routes.post('/usuario/add',controllers.usuarioController.save);
+routes.get('/usuario/edit/(:usuarioId)',controllers.usuarioController.edit);
+routes.post('/usuario/edit/(:usuarioId)',controllers.usuarioController.update);
 
-//employee routes
-routes.get('/employee',controllers.employeeController.index);
-routes.get('/employee/add',controllers.employeeController.add);
-routes.post('/employee/add',controllers.employeeController.save);
-routes.post('/employee/view',controllers.employeeController.employeeDetail);
-routes.get('/employee/edit/(:employee_id)',controllers.employeeController.edit);
+//pessoa routes
+routes.get('/pessoa',controllers.pessoaController.index);
+routes.get('/pessoa/add',controllers.pessoaController.add);
+routes.post('/pessoa/add',controllers.pessoaController.save);
+routes.post('/pessoa/view',controllers.pessoaController.pessoaDetail);
+routes.get('/pessoa/edit/(:pessoaId)',controllers.pessoaController.edit);
+routes.post('/pessoa/edit/(:pessoaId)', controllers.pessoaController.update);
 
 //Fabricante routes
 routes.get('/fabricante',controllers.fabricanteController.index);
 routes.get('/fabricante/add',controllers.fabricanteController.add);
 routes.post('/fabricante/add',controllers.fabricanteController.save);
+routes.get('/fabricante/edit/(:fabricanteId)', controllers.fabricanteController.edit);
+routes.post('/fabricante/edit/(:fabricanteId)', controllers.fabricanteController.update);
 
 //Estabelecimento routes
 routes.get('/estabelecimento',controllers.estabelecimentoController.index);
 routes.get('/estabelecimento/add',controllers.estabelecimentoController.add);
 routes.post('/estabelecimento/add', controllers.estabelecimentoController.save);
+routes.get('/estabelecimento/edit/(:estabelecimentoId)', controllers.estabelecimentoController.edit);
+routes.post('/estabelecimento/edit/(:estabelecimentoId)', controllers.estabelecimentoController.update);
 //routes.post('/estabelecimento/view', controllers.estabelecimentoController.estabelecimentoDetail);
 
 //Compra routes

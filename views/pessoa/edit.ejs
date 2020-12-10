@@ -1,0 +1,67 @@
+<%- include ../layouts/header.ejs %>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><%= title %></div>
+            <div class="panel-body">
+                <form class="form-horizontal" action="/pessoa/edit/<%= pessoa.pessoaId %>" method="POST">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="nome">Nome</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" name="nome" id="nome" placeholder="nome" 
+                                 value="<%= pessoa.nmPessoa %>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="usuario">usuario</label>
+                        <div class="col-sm-10">
+                          <select class="form-control" name="usuario" id="usuario">
+                                <option value="">Selecione o usuario</option>
+                            <% if (usuarios) { %>
+                                <% usuarios.forEach(function(usuario){ %>
+                                    <option value="<%= usuario.usuarioId %>"  
+                                            selected="<%= (usuario.usuarioId==pessoa.usuarioId) ? "selected" : "" %>">
+                                            <%= usuario.nmUsuario %> (<%= usuario.nmEmail %>) 
+                                    </option>
+                                <% }) %>
+                            <% } %>         
+                            
+                          </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="dtNascimento">Date of Birth</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control datepicker" name="dtNascimento" id="dtNascimento" 
+                                 value="<%= moment(pessoa.dtNascimento).format(shortDateFormat) %>" placeholder="Data de nascimento">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="dtAdmissao">Data admissão</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control datepicker" name="dtAdmissao" id="dtAdmissao" 
+                                 value="<%= moment(pessoa.dtAdmissao).format(shortDateFormat) %>" placeholder="data admissão">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="dtBaixa">Dt. baixa</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control datepicker" name="dtBaixa" id="dtBaixa" 
+                                 value="<%= (pessoa.dtBaixa!=null) ? moment(pessoa.dtBaixa).format(shortDateFormat) : ""; %>" placeholder="data baixa">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group"> 
+                      <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="/pessoa"><button type="button" class="btn btn-default">Cancel</button></a>
+                      </div>
+                    </div>
+                  </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include ../layouts/footer.ejs %>

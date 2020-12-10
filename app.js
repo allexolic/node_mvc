@@ -7,17 +7,22 @@ const cookieParser=require('cookie-parser');
 const session= require('express-session');
 const flash = require('express-flash');
 //const config=require('./config');
+
+//Iniciando o App
 const app = express();
+
 const routes = require('./routes/routes');
 const path = require('path');
 const methodOverride = require('method-override');
 const moment= require('moment');
+
 app.locals.moment=moment;
 app.locals.shortDateFormat="DD/MM/YYYY";
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(__dirname + '/public'));
 //app.use(myConnection(mysql,config.database,'pool'));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(expressValidator());
@@ -28,6 +33,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { maxAge: 60000 }
 }));
+
 app.use(methodOverride(function (req, res) {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
       // look in urlencoded POST bodies and delete it

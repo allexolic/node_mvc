@@ -26,9 +26,9 @@ estabelecimentoController.save=function(req,res){
         }
         estabelecimentoModel.insertEstabelecimento(newTask,function(err){
             if(err){
-                req.flash('error','There was error in inserting data');
+                req.flash('error','Erro ao adicionar registro.');
         }else{
-            req.flash('success','Company added succesfully');
+            req.flash('success','Estabelecimento adicionado com sucesso!');
         }
         res.redirect('/estabelecimento');
         });
@@ -42,10 +42,10 @@ estabelecimentoController.save=function(req,res){
     }
 }
 estabelecimentoController.edit=function(req,res){
-    var estabelecimentoId=req.params.id;
+    var estabelecimentoId=req.params.estabelecimentoId;
     estabelecimentoModel.findEstabelecimentoById(estabelecimentoId,function(result){
         if(result==null){
-            req.flash('error','Sorry the company doesnot exists!!');
+            req.flash('error','Estabelecimento não existe!!');
             res.redirect('/estabelecimento');
         }else{
           res.render('estabelecimento/edit',{title:'Edit estabelecimento',estabelecimento:result});
@@ -54,21 +54,21 @@ estabelecimentoController.edit=function(req,res){
 }
 
 estabelecimentoController.update=function(req,res){
-    var estabelecimentoId=req.params.id;
-    req.assert('nome', 'Name is required').notEmpty(); 
+    var estabelecimentoId=req.params.estabelecimentoId;
+    req.assert('nome', 'Nome é obrigatório.').notEmpty(); 
         
     var errors = req.validationErrors();
     if( !errors ) {
-        var company={
+        var estabelecimento={
             nmEstabelecimento:req.sanitize('nome').escape().trim(),
           
         }
         estabelecimentoModel.updateEstabelecimento(estabelecimentoId,estabelecimento,function(result){
                 if(result.affectedRows==1){
-                    req.flash('success', 'Company Information update successfully.');
+                    req.flash('success', 'Estabelecimento atualizado com sucesso.');
                     res.redirect('/estabelecimento');
                 }else{
-                    req.flash('error', 'There was error in updating company.');
+                    req.flash('error', 'Erro ao atualizar registro.');
                     res.redirect('/estabelecimento/edit/'+estabelecimentoId);  
                 }
         });

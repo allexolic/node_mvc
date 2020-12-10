@@ -1,0 +1,68 @@
+<%- include ../layouts/header.ejs %>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><%= title %><a href="/pessoa/add" class=" pull-right"><i class="fa fa-plus fa-fw">                
+            </i>Add New Pessoa</a>
+        </div>
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th></th>    
+                            <th>Nome</th>
+                            <th>Dt. nascimento</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <% if (pessoas) { %>
+                                <% pessoas.forEach(function(pessoa){ %>
+                                    <tr>
+                                        <td>
+                                            <% if(pessoa.dsImagem=="dsImagem.png"){ %>
+                                               <img src="/images/dsImagem.png" style="height:50px;">     
+                                           <% } %>
+                                        </td>
+                                        <td><%= pessoa.nmPessoa %></td>
+                                        <td><%= moment(pessoa.dtNascimento).format(shortDateFormat) %></td>
+                                        <td>
+                                            <a href="/pessoa/edit/<%= pessoa.pessoaId %>"><i class="fa fa-edit"></i></a>
+                                            <a href="#" class="view-pessoa" data-pessoa-id="<%= pessoa.pessoaId %>">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            <% } %>        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="pessoa_detail" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Pessoa Detalhe</h4>
+            </div>
+            <div class="modal-body">
+                <p><b>Nome</b>: <span class="pessoa-name pessoa-details"></span></p>            
+                <p><b>Usuário :</b> <span class="pessoa-usuario pessoa-details"></span></p>
+                <p><b>Dt. Admissão :</b><span class="pessoa-adm pessoa-details"></span></p>
+                <p><b>Dt. Nascimento :</b><span class="pessoa-nas pessoa-details"></span></p>
+                <p><b>Dt. Baixa :</b> <span class="pessoa-bai pessoa-details"></span></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+<%- include ../layouts/footer.ejs %>

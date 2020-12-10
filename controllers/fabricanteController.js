@@ -41,11 +41,11 @@ fabricanteController.save=function(req,res){
     }
 }
 fabricanteController.edit=function(req,res){
-    var fabricanteId=req.params.id;
+    var fabricanteId=req.params.fabricanteId;
     fabricanteModel.findFabricanteById(fabricanteId,function(result){
         if(result==null){
-            req.flash('error','Sorry the company doesnot exists!!');
-            res.redirect('/company');
+            req.flash('error','Fabricante não existe!!');
+            res.redirect('/fabricante');
         }else{
           res.render('fabricante/edit',{title:'Edit Fabricante',fabricante:result});
         }
@@ -53,21 +53,21 @@ fabricanteController.edit=function(req,res){
 }
 
 fabricanteController.update=function(req,res){
-    var fabricanteId=req.params.id;
-    req.assert('name', 'Name is required').notEmpty(); 
-    req.assert('location', 'Location is required').notEmpty()      
+    var fabricanteId=req.params.fabricanteId;
+    req.assert('nomefab', 'Nome é obrigatório').notEmpty(); 
+    req.assert('nucnpj', 'CNPJ é obrigatório').notEmpty()      
     var errors = req.validationErrors();
     if( !errors ) {
         var fabricante={
-            name:req.sanitize('name').escape().trim(),
-            location:req.sanitize('location').escape().trim(),
+            nmFabricante:req.sanitize('nomefab').escape().trim(),
+            nuCnpj:req.sanitize('nucnpj').escape().trim(),
         }
         fabricanteModel.updateFabricante(fabricanteId,fabricante,function(result){
                 if(result.affectedRows==1){
-                    req.flash('success', 'Company Information update successfully.');
+                    req.flash('success', 'Fabricante atualizado com sucesso.');
                     res.redirect('/fabricante');
                 }else{
-                    req.flash('error', 'There was error in updating company.');
+                    req.flash('error', 'Erro ao atualizar fabricante.');
                     res.redirect('/fabricante/edit/'+fabricanteId);  
                 }
         });

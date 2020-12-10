@@ -1,28 +1,28 @@
 <%- include ../layouts/header.ejs %>
-
 <div class="row">
     <div class="col-sm-12">
         <div class="panel panel-default">
             <div class="panel-heading"><%= title %></div>
             <div class="panel-body">
-                <form class="form-horizontal" action="/fabricante/add" method="POST">
+                <form class="form-horizontal" action="/usuario/edit/<%= usuario[0].usuarioId %>" method="POST">
                     <div class="form-group">
-                      <label class="control-label col-sm-2" for="nomefab">Nome</label>
+                      <label class="control-label col-sm-2" for="nome">Nome</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" name="nomefab" id="nomefab" placeholder="nome fabricante">
+                        <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome usuário" 
+                               value="<%= usuario[0].nmUsuario %>">
                       </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="nucnpj">CNPJ</label>
+                        <label class="control-label col-sm-2" for="nmEmail">Email</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="nucnpj" id="nucnpj" placeholder="número CNPJ"
-                                 maxlength="20">
+                          <input type="email" class="form-control" name="nmEmail" id="nmEmail" placeholder="Email" 
+                                 value="<%= usuario[0].nmEmail %>">
                         </div>
                       </div>
                     <div class="form-group"> 
                       <div class="col-sm-offset-2 col-sm-10">
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a href="/fabricante"><button type="button" class="btn btn-default">Cancel</button></a>
+                        <a href="/usuario"><button type="button" class="btn btn-default">Cancel</button></a>
                       </div>
                     </div>
                   </form>

@@ -2,7 +2,7 @@ var config={
     database:{
         host:'localhost',
         user :'root',
-        password:'1234@asdf',
+        password:'root',
         database:'node_express'
     }
 }
