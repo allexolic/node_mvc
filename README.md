@@ -1,6 +1,7 @@
 # node_mvc
 
 Sistema de cadastro de compras em Node.js com banco de dados Mysql
+- FrontEnd com bootstrap
 
 Passo a passo:
 
