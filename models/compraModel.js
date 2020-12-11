@@ -24,8 +24,8 @@ compraModel.getAllCompra=function(result){
     });
 }
 
-compraModel.getCompraById=function(compra_id,result){
-    sql.query("Select * From ListarComprasRealizadas Where compraId ="+compra_id,function(err,rows){
+compraModel.getCompraById=function(compraId,result){
+    sql.query("Select * From ListarComprasRealizadas Where compraId ="+compraId,function(err,rows){
         if(err)
         return result (err,null);
 

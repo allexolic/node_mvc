@@ -13,7 +13,9 @@ pessoaModel.insertPessoa=function(newPessoa,result){
    
 }
 pessoaModel.getAllPessoas=function(result){
-    sql.query("SELECT * FROM  `pessoa`",function(err, rows, fields){
+    sql.query("SELECT pessoa.pessoaId, pessoa.nmPessoa, pessoa.dsImagem, DATE_FORMAT(pessoa.dtNascimento, '%d/%m/%Y') as dtNascimento "+
+              " , pessoa.dtAdmissao, pessoa.dtBaixa "+
+              " FROM  pessoa",function(err, rows, fields){
         if(err){
             return result(err,null);
         }else{
@@ -22,7 +24,10 @@ pessoaModel.getAllPessoas=function(result){
     });
 }
 pessoaModel.getPessoaById=function(pessoaId,result){
-    sql.query("SELECT pessoa.*,usuario.nmUsuario as usuario FROM pessoa LEFT JOIN usuario ON usuario.usuarioId=pessoa.usuarioId WHERE pessoa.pessoaId="+pessoaId,function(err,rows){
+    sql.query("SELECT pessoa.pessoaId, pessoa.nmPessoa, pessoa.dsImagem, DATE_FORMAT(pessoa.dtNascimento, '%d/%m/%Y') as dtNascimento "+ 
+              " , pessoa.dtAdmissao, pessoa.dtBaixa, pessoa.usuarioId, "+
+              " usuario.nmUsuario as usuario FROM pessoa LEFT JOIN usuario ON usuario.usuarioId=pessoa.usuarioId " +
+              " WHERE pessoa.pessoaId="+pessoaId,function(err,rows){
         if(err)
             return result(err);
 

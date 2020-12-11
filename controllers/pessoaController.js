@@ -99,7 +99,7 @@ pessoaController.update=function(req,res){
             nmPessoa: req.sanitize('nome').escape().trim(),
             dsImagem: 'dsImagem.png',            
             usuarioId: req.sanitize('usuario').escape().trim(),
-            dtNascimento: dateFormat(req.sanitize('dtNascimento').trim(), 'yyyy-mm-dd'),
+            dtNascimento: dateFormat(req.sanitize('dtNascimento').trim(), 'yyyy-dd-mm'),
             dtAdmissao: dateFormat(req.sanitize('dtAdmissao').trim(), 'yyyy-mm-dd')
         }
         pessoaModel.updatePessoa(pessoaId,pessoa,function(result){

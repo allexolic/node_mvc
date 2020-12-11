@@ -25,7 +25,7 @@
                                            <% } %>
                                         </td>
                                         <td><%= pessoa.nmPessoa %></td>
-                                        <td><%= moment(pessoa.dtNascimento).format(shortDateFormat) %></td>
+                                        <td><%= pessoa.dtNascimento %></td>
                                         <td>
                                             <a href="/pessoa/edit/<%= pessoa.pessoaId %>"><i class="fa fa-edit"></i></a>
                                             <a href="#" class="view-pessoa" data-pessoa-id="<%= pessoa.pessoaId %>">

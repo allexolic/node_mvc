@@ -40,12 +40,12 @@ $(document).ready(function(){
 
 $(document).on('click','.view-compra',function(e){
     e.preventDefault();
-    var compra_id=$(this).attr('data-compra-id');
+    var compraId=$(this).attr('data-compraId');
     $.ajax({
         url:"/compra/view",
         type:'POST',
         dataType:'JSON',
-        data:{compra_id:compra_id},
+        data:{compraId:compraId},
         success:function(response){
             if(response.status==1){
                 

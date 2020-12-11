@@ -31,7 +31,7 @@ compraController.save = function(req, res,next){
         var newCompra = {
 
           estabelecimentoId: req.sanitize('estabelecimento').escape().trim(),
-          dtCompra:  req.sanitize('dtCompra').trim() 
+          dtCompra: dateFormat(req.sanitize('dtCompra').trim() , 'yyyy-dd-mm')
         }
 
         
@@ -59,10 +59,10 @@ compraController.save = function(req, res,next){
 }
 
 compraController.compraDetail = function (req, res){
-    var compra_id = req.body.compra_id;
+    var compraId = req.body.compraId;
     var response={};
 
-    compraModel.getCompraById(compra_id, function(result){
+    compraModel.getCompraById(compraId, function(result){
         if (result == null){
             response.status=0;
             response.data={};
@@ -73,6 +73,18 @@ compraController.compraDetail = function (req, res){
             response.message="Compras";
         }
         res.send(JSON.stringify(response));
+    })
+}
+
+compraController.edit = function(req, res){
+    var compraId = req.params.compraId;
+    compraModel.getCompraById(compraId, function(result){
+        if(result==null){
+            req.flash('error', 'Compra não encontrada!');
+            req.redirect('/compra');
+        }else{
+            res.render('compra/edit',{title:'Editar compra', compra:result});
+        }
     })
 }
 

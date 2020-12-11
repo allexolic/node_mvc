@@ -42,5 +42,6 @@ routes.get('/compra',controllers.compraController.index);
 routes.get('/compra/add', controllers.compraController.add);
 routes.post('/compra/add',controllers.compraController.save);
 routes.post('/compra/view',controllers.compraController.compraDetail);
+routes.get('/compra/edit/(:compraId)', controllers.compraController.edit);
 
 module.exports=routes;
